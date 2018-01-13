@@ -13,5 +13,5 @@ class Animal(Document):
         self.name = name
         self.age = age
         self.breed = breed
-        self.arrived_date = datetime.strptime(arrived_date, '%Y-%m-%d')
+        self.arrived_date = arrived_date
         self.description = description
