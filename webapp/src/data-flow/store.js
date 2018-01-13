@@ -2,6 +2,8 @@ import accountReducer from './account/reducer';
 import adoptionReducer from './adoption/reducer';
 import animalReducer from './animal/reducer';
 
+import { apiMiddleware } from 'obsidian';
+
 import { createStore, combineReducers } from 'redux'
 
 const reducers = combineReducers({
@@ -10,4 +12,4 @@ const reducers = combineReducers({
     animal: animalReducer,
 })
 
-export default createStore(reducers);
+export default createStore(reducers, apiMiddleware);
