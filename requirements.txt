@@ -1,0 +1,5 @@
+flask
+mongoengine
+pytest
+pytest-cov
+coveralls
