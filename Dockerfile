@@ -1,10 +1,9 @@
-FROM python:last
+FROM python:3
 
 COPY ./ /catchiorrineo
-
 WORKDIR /catchiorrineo
 
 RUN pip install -r requirements.txt
+RUN pip install gunicorn
 
-CMD [ "python", "api/main.py" ]
-
+CMD [ "/catchiorrineo/start.sh" ]
