@@ -54,4 +54,5 @@ def update_animal(animal_id):
 @animal.route("/<animal_id>", methods = ["DELETE"])
 @json_result
 def delete_animal(animal_id):
-    return {}
+    animal = Animal.objects.get(id=animal_id)
+    animal.delete()
