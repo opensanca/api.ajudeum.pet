@@ -38,7 +38,18 @@ def create_animal():
 @animal.route("/<animal_id>", methods = ["PUT"])
 @json_result
 def update_animal(animal_id):
-    return 'test'
+    animal_update_doc = Animal.objects.get(id=animal_id)
+  
+    data = request.json
+    
+    animal_update_doc.name = data['name']
+    animal_update_doc.age = data['age']
+    animal_update_doc.breed = data['breed']
+    animal_update_doc.description = data['description']
+    animal_update_doc.arrived_date = datetime.strptime(data['arrived_date'], '%Y-%m-%d')
+    
+    animal_update_doc.save()
+    return str(animal_update_doc.id)
 
 @animal.route("/<animal_id>", methods = ["DELETE"])
 @json_result
