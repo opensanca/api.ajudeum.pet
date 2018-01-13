@@ -11,5 +11,7 @@ after_success:
   - coveralls
   - ./deploy.sh
 env:
+  global:
+    - MONGODB_URI: mongomock://localhost
   matrix:
     secure: wciAK+Fw3J1fBarpL7RPXDRLFzlpJjdEA/M4NFBeysDRpV8oKiRdsIKRp+WlESSziOcXsS2NMyEohGmfPhBhGVT/oBLOiKljY39CdAAaXjIqAUNZbnGaTtzs2ht0kE4eOFxjZV2dqUr/+56ia8neP+u6EqKUWHd/iy6xBPW8JPssvd2c5M2TR9bWBbPdN4AeTaRZcUhwcxSC0z+DPZfontJo8ep+ZByrAVatQxDW7XbY44NhfH8+63Ibdprq9L5F5HSypYjVx4SPswObQeSm3BydZbeyvJGuUNyHiQdcW/51DeaTLmPoGQt9aj9A4+1Y8E1H+LIgaTJf526wIV6hksD8zA/MLEsju0P5vkUTuk7g47/KM6Giu4IB4nvTuwLdjdPA25zMv9Q95H8/kIVNewphj7O4x7tLtQateMin4cRCEqLpHHB7GHBpFxMbAbB2CfFXUmhQo9787rcYW1DhEGqAxjJfJ/eoLXZbZqzm8bbHlu5TliXOdrcT59EcbHwFuaT1jTpNtcVNWdmstcacYWH8QOwZUeYBVKl663e3X1eXU3tZHg0m/Kd4M7G1O/vz9MWpptpUDq/IaTpj8iAyVdn2cuTsz+ckrxumMLi7Xy4iv5TUu6uh5qKGjCJxsTy3tPtuKs5Ez+aGKnJIq0V5T5g4UageCsBjjrbh5Ei+PcA=
