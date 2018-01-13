@@ -1,4 +1,5 @@
 mongoengine
+mongomock >=3.8, <4
 pytest
 pytest-cov
 coveralls
