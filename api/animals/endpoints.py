@@ -15,7 +15,8 @@ def create_animal():
         abort(400)
     data = request.json
     animal_doc = Animal(**data)
-    return {}
+    animal_doc.save()
+    return str(animal_doc.id)
 
 @animal.route("/<animal_id>", methods = ["PUT"])
 @json_result
