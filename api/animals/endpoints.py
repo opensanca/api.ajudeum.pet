@@ -25,7 +25,7 @@ def animals():
 @json_result
 def create_animal():
     schema = AnimalSchema()
-    data, errors = schema.load(request.json)
+    data, errors = schema.load(request.get_json())
     if errors:
         raise InvalidInput(errors)
 
@@ -38,7 +38,7 @@ def create_animal():
 @json_result
 def update_animal(animal_id):
     schema = AnimalSchema()
-    data, errors = schema.load(request.json)
+    data, errors = schema.load(request.get_json())
     if errors:
         raise InvalidInput(errors)
 
