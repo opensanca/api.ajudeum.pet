@@ -6,6 +6,7 @@ python:
   - '3.6'
 install: pip install -r requirements.txt
 script:
+  - pylint api
   - py.test --cov=api
 after_success:
   - coveralls
