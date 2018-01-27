@@ -8,3 +8,4 @@ python-dotenv
 python-jose-cryptodome
 flask-cors
 six
+pylint
