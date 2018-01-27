@@ -1,13 +1,8 @@
-"""
-    Schema para validação de dados de animais
-"""
 from marshmallow import Schema, fields
 
 
+# pylint: disable=too-few-public-methods
 class AnimalSchema(Schema):
-    """
-        Classe responsavel pelo Schema de Animal do Marshmallow
-    """
     name = fields.String(required=True)
     age = fields.Integer()
     breed = fields.List(fields.String())

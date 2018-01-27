@@ -1,7 +1,3 @@
-"""
-Módulo de teste para endpoints.py
-"""
-
 from datetime import datetime
 import json
 from flask import url_for
@@ -10,7 +6,6 @@ from .model import Animal
 
 
 def test_animals(client):
-    """Testa o fluxo básico do endpoint de animais"""
     animal = Animal(name='Dog 1',
                     age=64,
                     breed=['lontras'],
@@ -25,7 +20,6 @@ def test_animals(client):
 
 
 def test_create_animal(client):
-    """Testa cadastro de animal"""
     headers = {
         'Content-Type': 'application/json',
     }
@@ -41,7 +35,6 @@ def test_create_animal(client):
 
 
 def test_update_animal(client):
-    """Testa alteração de animal"""
     animal = Animal(name='Dog 2',
                     age=5,
                     breed=['unicornio', 'cachorro'],
@@ -73,7 +66,6 @@ def test_update_animal(client):
 
 
 def test_delete_animal(client):
-    """Testa remoção de animal"""
     animal = Animal(name='Dog 2',
                     age=5,
                     breed=['unicornio', 'cachorro'],
@@ -85,5 +77,4 @@ def test_delete_animal(client):
     response = client.delete(url_for('animal.delete_animal', **params))
 
     assert response.status_code == HTTP_STATUS_CODES['OK']
-
     assert not Animal.objects.filter(id=animal.id).count()

@@ -1,6 +1,3 @@
-"""
-Módulo inicializador da aplicação de API
-"""
 from flask import Flask, jsonify
 from mongoengine import connect
 import settings
@@ -21,7 +18,6 @@ def handle_invalid_input(error):
 
 
 def create_app():
-    """Cria o app"""
     app = Flask(__name__)
     app.register_blueprint(ANIMAL)
     app.register_error_handler(InvalidInput, handle_invalid_input)

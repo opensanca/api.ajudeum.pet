@@ -1,6 +1,3 @@
-"""
-Módulo de API para gerenciamento de animais
-"""
 from flask import Blueprint, request
 from ..common.utils import json_result
 from ..common.exceptions import InvalidInput
@@ -14,7 +11,6 @@ ANIMAL = Blueprint("animal", __name__, url_prefix="/animals")
 @ANIMAL.route("/", methods=["GET"])
 @json_result
 def animals():
-    """ Retorna uma lista de animais """
     return list(map(lambda x: {
         'name': x.name,
         'age': x.age,
@@ -28,7 +24,6 @@ def animals():
 @ANIMAL.route("/", methods=["POST"])
 @json_result
 def create_animal():
-    """Endpoint que cadastra dados do animal"""
     schema = AnimalSchema()
     data, errors = schema.load(request.json)
     if errors:
@@ -42,7 +37,6 @@ def create_animal():
 @ANIMAL.route("/<animal_id>", methods=["PUT"])
 @json_result
 def update_animal(animal_id):
-    """Atualiza dados de um animal já cadastrado"""
     schema = AnimalSchema()
     data, errors = schema.load(request.json)
     if errors:
@@ -61,6 +55,5 @@ def update_animal(animal_id):
 @ANIMAL.route("/<animal_id>", methods=["DELETE"])
 @json_result
 def delete_animal(animal_id):
-    """Remove um animal cadastrado no banco de dados"""
     animal = Animal.objects.get(id=animal_id)
     animal.delete()

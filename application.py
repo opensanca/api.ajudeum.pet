@@ -1,5 +1,3 @@
-"""Módulo de entrada da aplicação."""
-
 from api import create_app
 
 
