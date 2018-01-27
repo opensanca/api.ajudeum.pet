@@ -13,3 +13,8 @@ def json_result(wrapped):
         response = wrapped(*args, **kwargs)
         return json.dumps(response)
     return wrapper
+
+
+HTTP_STATUS_CODES = {
+    'OK': 200,
+}

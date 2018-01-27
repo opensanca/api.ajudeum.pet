@@ -1,6 +1,7 @@
 mongoengine
 mongomock >=3.8, <4
 pytest
+pytest-flask
 pytest-cov
 coveralls
 flask
