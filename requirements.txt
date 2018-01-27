@@ -10,3 +10,4 @@ python-jose-cryptodome
 flask-cors
 six
 pylint
+marshmallow

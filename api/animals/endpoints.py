@@ -1,10 +1,12 @@
 """
 Módulo de API para gerenciamento de animais
 """
-from datetime import datetime
-from flask import Blueprint, request, abort
+from flask import Blueprint, request
 from ..common.utils import json_result
+from ..common.exceptions import InvalidInput
 from .model import Animal
+from .schemas import AnimalSchema
+
 
 ANIMAL = Blueprint("animal", __name__, url_prefix="/animals")
 
@@ -27,21 +29,12 @@ def animals():
 @json_result
 def create_animal():
     """Endpoint que cadastra dados do animal"""
-    if not request.json:
-        abort(400)
-    data = request.json
+    schema = AnimalSchema()
+    data, errors = schema.load(request.json)
+    if errors:
+        raise InvalidInput(errors)
 
-    name = data['name']
-    age = data['age']
-    breed = data['breed']
-    description = data['description']
-    arrived_date = datetime.strptime(data['arrived_date'], '%Y-%m-%d')
-    animal_doc = Animal(name=name,
-                        age=age,
-                        breed=breed,
-                        description=description,
-                        arrived_date=arrived_date)
-
+    animal_doc = Animal(**data)
     animal_doc.save()
     return str(animal_doc.id)
 
@@ -50,17 +43,17 @@ def create_animal():
 @json_result
 def update_animal(animal_id):
     """Atualiza dados de um animal já cadastrado"""
+    schema = AnimalSchema()
+    data, errors = schema.load(request.json)
+    if errors:
+        raise InvalidInput(errors)
+
     animal_update_doc = Animal.objects.get(id=animal_id)
-
-    data = request.json
-
     animal_update_doc.name = data['name']
     animal_update_doc.age = data['age']
     animal_update_doc.breed = data['breed']
     animal_update_doc.description = data['description']
-    animal_update_doc.arrived_date = datetime.strptime(
-        data['arrived_date'], '%Y-%m-%d')
-
+    animal_update_doc.arrived_date = data['arrived_date']
     animal_update_doc.save()
     return str(animal_update_doc.id)
 
