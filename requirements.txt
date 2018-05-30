@@ -1,13 +1,13 @@
-mongoengine
-mongomock >=3.8, <4
-pytest
-pytest-flask
-pytest-cov
-coveralls
-flask
-python-dotenv
-python-jose-cryptodome
-flask-cors
-six
-pylint
-marshmallow
+Flask-Cors==3.0.4
+Flask-Migrate==2.1.1
+Flask-SQLAlchemy==2.3.2
+Flask==1.0.2
+coveralls==1.3.0
+marshmallow==2.15.3
+pylint==1.9.1
+pytest-cov==2.5.1
+pytest-flask==0.10.0
+pytest==3.6.0
+python-dotenv==0.8.2
+python-jose-cryptodome==1.3.2
+six==1.11.0
