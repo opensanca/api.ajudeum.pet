@@ -3,7 +3,6 @@ from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
-from api.config import Config
 from api.common.exceptions import InvalidInput
 from api.common.encoder import AlchemyJSONEncoder
 

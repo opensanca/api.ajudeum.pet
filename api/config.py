@@ -11,6 +11,7 @@ class DevelopmentConfig(Config):
     SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL', f'sqlite:///{os.path.join(_BASE_DIR, "ajude.um.pet.db")}')
     DEBUG = True
 
+
 class TestingConfig(Config):
     TESTING = True
     SERVER_NAME = 'localhost:5000'

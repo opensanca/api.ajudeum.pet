@@ -43,6 +43,7 @@ def test_create_animal(client, session):
     assert response.status_code == HTTPStatus.OK
     assert Animal.query.count() == 1
 
+
 def test_update_animal(client, session):
     animal = Animal(name='Dog 2',
                     age=5,
