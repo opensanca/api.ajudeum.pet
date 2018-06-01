@@ -112,5 +112,11 @@ venv.bak/
 !.vscode/extensions.json
 .history
 
+# Pytest
+.pytest_cache/
+
+# SQLite
+*.db
+*.sqlite3
 
 # End of https://www.gitignore.io/api/python,visualstudiocode

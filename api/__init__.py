@@ -1,13 +1,15 @@
 from flask import Flask, jsonify
 from flask_cors import CORS
-from mongoengine import connect
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
-import settings
-from api.animals.endpoints import ANIMAL
-from .common.exceptions import InvalidInput
+from api.config import Config
+from api.common.exceptions import InvalidInput
+from api.common.encoder import AlchemyJSONEncoder
 
 
-connect(host=settings.MONGODB_URI)
+db = SQLAlchemy()
+migrate = Migrate()
 
 
 def handle_invalid_input(error):
@@ -19,11 +21,17 @@ def handle_invalid_input(error):
     return response
 
 
-def create_app():
+def create_app(environment='Development'):
     app = Flask(__name__)
+    app.config.from_object(f'api.config.{environment}Config')
+    app.json_encoder = AlchemyJSONEncoder
 
     CORS(app)
 
+    db.init_app(app)
+    migrate.init_app(app, db)
+
+    from api.animals.endpoints import ANIMAL
     app.register_blueprint(ANIMAL)
     app.register_error_handler(InvalidInput, handle_invalid_input)
 

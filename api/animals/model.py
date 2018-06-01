@@ -1,19 +1,36 @@
+import uuid
 from datetime import datetime
-from mongoengine import Document, StringField, IntField, ListField, DateTimeField
+
+from api import db
 
 
-# pylint: disable=too-few-public-methods
-class Animal(Document):
-    name = StringField(required=True)
-    age = IntField()
-    breed = ListField()
-    arrived_date = DateTimeField(default=datetime.now())
-    description = StringField()
+class Animal(db.Model):
 
-    def __init__(self, name, age, breed, arrived_date, description, *args, **kwargs): # pylint: disable=too-many-arguments
-        super(Animal, self).__init__(*args, **kwargs)
-        self.name = name
-        self.age = age
-        self.breed = breed
-        self.arrived_date = arrived_date
-        self.description = description
+    __tablename__ = 'animal'
+
+    id = db.Column(db.String, primary_key=True, default=lambda: str(uuid.uuid4()))
+    name = db.Column(db.String(50), nullable=False)
+    age = db.Column(db.Integer, nullable=False)
+    breed = db.Column(db.String(30), nullable=False)
+    arrived_date = db.Column(db.Date, default=datetime.utcnow)
+    description = db.Column(db.String, nullable=False)
+
+    def __repr__(self):
+        return f'<Animal: {self.name}>'
+
+    def __json__(self):
+        return ['id', 'name', 'age', 'breed', 'arrived_date', 'description']
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def update(self, data):
+        for field in data:
+            setattr(self, field, data[field])
+
+        db.session.commit()
+
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()

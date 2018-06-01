@@ -5,6 +5,6 @@ from marshmallow import Schema, fields
 class AnimalSchema(Schema):
     name = fields.String(required=True)
     age = fields.Integer()
-    breed = fields.List(fields.String())
+    breed = fields.String()
     description = fields.String()
     arrived_date = fields.Date()
